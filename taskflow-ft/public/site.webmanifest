@@ -1,0 +1,22 @@
+{
+    "name": "TaskFlow",
+    "short_name": "TaskFlow",
+    "description": "Modern Team Collaboration and Task Management Platform.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2563EB",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/taskflow_logo2.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/taskflow_logo2.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
