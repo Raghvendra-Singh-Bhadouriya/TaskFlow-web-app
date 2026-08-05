@@ -4,6 +4,7 @@ import React, { useEffect, useReducer } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import api from "../services/axios";
 
 const initialState = {
   taskData: [],
@@ -51,9 +52,11 @@ const Task = () => {
     dispatch({ type: "FETCH_START" });
 
     try {
-      const res = await axios.get(
-        `http://localhost:8080/all_task/${groupId}`
-      );
+      // const res = await axios.get(
+      //   `http://localhost:8080/all_task/${groupId}`
+      // );
+
+      const res = await api.get(`/all_task/${groupId}`)
 
       dispatch({
         type: "FETCH_SUCCESS",

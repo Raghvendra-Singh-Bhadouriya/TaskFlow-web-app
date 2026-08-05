@@ -2,6 +2,7 @@ import React, { useState, useReducer, useContext } from "react";
 import axios from "axios";
 import { ToggleFormShowContext } from "../context/ToggleFormContext";
 import { GroupDetailFetchContext } from "../context/GroupDetailFetchContext";
+import api from "../services/axios";
 
 const initialState = {
   title: "",
@@ -57,7 +58,7 @@ const Form = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
 
     if (!token) {
       setError("Please login again");
@@ -67,15 +68,19 @@ const Form = () => {
     try {
       setLoading(true);
 
-      await axios.post(
-        `http://localhost:8080/create_task/${groupId}`,
-        state,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      // await axios.post(
+      //   `http://localhost:8080/create_task/${groupId}`,
+      //   state,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   }
+      // );
+
+      await api.post(
+        `/create_task/${groupId}`, state,
+      )
 
       dispatch({ type: "RESET" });
 

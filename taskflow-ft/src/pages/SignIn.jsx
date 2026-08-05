@@ -4,6 +4,7 @@ import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import api from "../services/axios"
 
 const initialState = {
   email: "",
@@ -54,10 +55,7 @@ const SignIn = () => {
     setError("");
 
     try {
-      const res = await axios.post(
-        "http://localhost:8080/signin",
-        state
-      );
+      const res = await api.post("/signin", state);
 
       dispatch({ type: "RESET" });
 

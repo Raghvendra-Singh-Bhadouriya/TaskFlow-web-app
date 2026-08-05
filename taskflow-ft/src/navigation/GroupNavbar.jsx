@@ -9,7 +9,9 @@ import { GroupDetailFetchContext } from "../context/GroupDetailFetchContext";
 import { ToggleFormShowContext } from "../context/ToggleFormContext";
 import GroupMenu from "../components/GroupMenu";
 
+
 const GroupNavbar = () => {
+
   const { groupDetail } = useContext(
     GroupDetailFetchContext
   );

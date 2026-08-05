@@ -1,6 +1,7 @@
 import { useContext, useReducer, useState } from "react";
 import { ToggleFormShowContext } from "../context/ToggleFormContext";
 import axios from "axios";
+import api from "../services/axios";
 
 const initialState = {
   groupname: "",
@@ -53,22 +54,30 @@ const CreateGroupForm = ({fetchGroups}) => {
       return;
     }
 
-    const token = localStorage.getItem("token");
+    //const token = localStorage.getItem("token");
 
     try {
       setLoading(true);
       
-      const res = await axios.post(
-        "http://localhost:8080/create-group",
+      // const res = await axios.post(
+      //   "http://localhost:8080/create-group",
+      //   {
+      //     groupname: state.groupname.trim(),
+      //   },
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   }
+      // );
+      const res = await api.post(
+        `/create-group`,
         {
           groupname: state.groupname.trim(),
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      )
+
+
       if(res?.data?.success === true){
         await fetchGroups()
       }

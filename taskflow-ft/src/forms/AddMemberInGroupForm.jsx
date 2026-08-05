@@ -2,6 +2,7 @@ import { useReducer, useContext, useState } from "react";
 import axios from "axios";
 import { ToggleFormShowContext } from "../context/ToggleFormContext";
 import { GroupDetailFetchContext } from "../context/GroupDetailFetchContext";
+import api from "../services/axios";
 
 const InitialState = {
   username: "",
@@ -56,8 +57,14 @@ console.log(show)
     try {
       setLoading(true);
 
-      const res = await axios.patch(
-        `http://localhost:8080/group/${groupId}/add-member`,
+      // const res = await axios.patch(
+      //   `http://localhost:8080/group/${groupId}/add-member`,
+      //   {
+      //     username: state.username.trim(),
+      //   }
+      // );
+      const res = await api.patch(
+        `/group/${groupId}/add-member`,
         {
           username: state.username.trim(),
         }

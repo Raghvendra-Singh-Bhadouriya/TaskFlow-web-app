@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useReducer } from "react";
 import { FaTimes } from "react-icons/fa";
+import api from "../services/axios";
 
 const initialState = {
     title: "",
@@ -57,7 +58,7 @@ const EditTask = ({taskId, setEditTaskFormIsOpen}) => {
 
 //========= Get the task data ============//
     async function getTaskData(taskId){
-        const token = localStorage.getItem("token")
+        //const token = localStorage.getItem("token")
 
         dispatch({
             type: "FETCH_START",
@@ -65,11 +66,12 @@ const EditTask = ({taskId, setEditTaskFormIsOpen}) => {
         })
 
         try {
-            const response = await axios.get(`http://localhost:8080/group/single-task/${taskId}`,{
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
+            // const response = await axios.get(`http://localhost:8080/group/single-task/${taskId}`,{
+            //     headers: {
+            //         Authorization: `Bearer ${token}`
+            //     }
+            // })
+            const response = await api.get(`/group/single-task/${taskId}`)
 
             dispatch({type: "FETCH_SUCCESS", payload: response?.data?.data})
         } catch (error) {

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import api from "../services/axios";
 
 const SingleGroup = () => {
   const [group, setGroup] = useState(null);
@@ -13,9 +14,10 @@ const SingleGroup = () => {
     try {
       setLoading(true);
 
-      const res = await axios.get(
-        `http://localhost:8080/single_group/${groupId}`
-      );
+      // const res = await axios.get(
+      //   `http://localhost:8080/single_group/${groupId}`
+      // );
+      const res = await api.get(`/single_group/${groupId}`)
 
       setGroup(res?.data);
     } catch (error) {

@@ -2,6 +2,7 @@ import React, { useState, useReducer } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import api from "../services/axios";
 
 const initialState = {
   username: "",
@@ -73,10 +74,11 @@ const SignUp = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post(
-        "http://localhost:8080/signup",
-        state
-      );
+      // const res = await axios.post(
+      //   "http://localhost:8080/signup",
+      //   state
+      // );
+      const res = await api.post("/signup", state)
 
       dispatch({ type: "RESET" });
 

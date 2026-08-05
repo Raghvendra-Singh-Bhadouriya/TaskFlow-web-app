@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import api from "../services/axios";
 
 const SearchUserDropDown = () => {
   const token = localStorage.getItem("token");
@@ -26,9 +27,11 @@ const SearchUserDropDown = () => {
     try {
       setLoading(true);
 
-      const res = await axios.get(
-        `http://localhost:8080/search-users?q=${q}`
-      );
+      // const res = await axios.get(
+      //   `http://localhost:8080/search-users?q=${q}`
+      // );
+
+      const res = await api.get(`/search-users?q=${q}`);
 
       setSearchData(res?.data?.data || []);
 

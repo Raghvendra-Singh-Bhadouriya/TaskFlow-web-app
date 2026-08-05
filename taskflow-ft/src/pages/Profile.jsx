@@ -117,7 +117,7 @@ const Profile = () => {
               text-gray-800
             "
           >
-            Find Team Members
+            Find Uers
           </h2>
 
           <p className="text-gray-500 mt-2">

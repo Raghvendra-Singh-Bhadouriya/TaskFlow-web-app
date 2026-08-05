@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useReducer, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import DeleteTask from "./DeleteTask";
+import api from "../services/axios";
 
 import {
   FaArrowLeft,
@@ -64,16 +65,18 @@ const SingleTask = () => {
     dispatch({ type: "FETCH_START" });
 
     try {
-      const token = localStorage.getItem("token");
+      //const token = localStorage.getItem("token");
 
-      const res = await axios.get(
-        `http://localhost:8080/group/single-task/${taskId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      // const res = await axios.get(
+      //   `http://localhost:8080/group/single-task/${taskId}`,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   }
+      // );
+
+      const res = await api.get(`/group/single-task/${taskId}`)
       //console.log("data:", res?.data?.data)
       dispatch({
         type: "FETCH_SUCCESS",

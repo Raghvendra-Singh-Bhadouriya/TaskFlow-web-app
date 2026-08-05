@@ -1,16 +1,20 @@
 import axios from "axios";
 import { useState } from "react";
+import api from "../services/axios";
 
-const GroupSettings = ({ group_id, setSettingPopUpOpen }) => {
+const GroupSettings = ({ group_id, setSettingPopUpOpen, fetchGroups }) => {
     const [deleteConfirmation, setDeleteConfirmation] = useState(false);
 
     async function handleDeleteGroup(id) {
         
         try {
-            const response = await axios.delete(
-                `http://localhost:8080/delete-group/${id}`
-            );
+            // const response = await axios.delete(
+            //     `http://localhost:8080/delete-group/${id}`
+            // );
+            const response = await api.delete(`/delete-group/${id}`);
 
+            fetchGroups();
+            setSettingPopUpOpen(false);
             setDeleteConfirmation(false);
             
         } catch (error) {

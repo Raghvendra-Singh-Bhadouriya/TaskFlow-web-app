@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import api from "../services/axios";
 
 const GroupMembers = () => {
   const [membersData, setMembersData] = useState(null);
@@ -14,14 +15,15 @@ const GroupMembers = () => {
     try {
       setLoading(true);
 
-      const res = await axios.get(
-        `http://localhost:8080/group/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      );
+      // const res = await axios.get(
+      //   `http://localhost:8080/group/${id}`,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`
+      //     }
+      //   }
+      // );
+      const res = await api.get(`/group/${id}`)
 
       setMembersData(res?.data?.data);
     } catch (error) {

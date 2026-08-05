@@ -3,6 +3,7 @@ import axios from "axios";
 import { ToggleFormShowContext } from "../context/ToggleFormContext";
 import { AuthContext } from "../context/AuthContext";
 import Loading from "./Loading";
+import api from "../services/axios";
 
 
 const initialState = {
@@ -45,23 +46,27 @@ const MyTask = () => {
 
 // =======Fetch user tasks only======================//
     async function fetchUserTask(decodedToken){
+
         dispatch({type: "FETCH_START", loading: true})
         setLoading(true);
+
         try {
             const token = localStorage.getItem("token");
             const id = decodedToken?.id
 
             if(!token || !id) return;
 
-            console.log(id)
-            let res = await axios.get(
-                `http://localhost:8080/my_task/${id}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            )
+            // console.log(id)
+            // let res = await axios.get(
+            //     `http://localhost:8080/my_task/${id}`,
+            //     {
+            //         headers: {
+            //             Authorization: `Bearer ${token}`
+            //         }
+            //     }
+            // )
+            let res = await api.get(`/my_task/${id}`)
+
             setLoading(false);
             dispatch({type: "FETCH_SUCCESS", loading: false, payload: res?.data?.data})
             console.log(res?.data?.data)
@@ -92,13 +97,14 @@ const MyTask = () => {
             }
     
             try {
-                let res = await axios.put(`http://localhost:8080/update_task/${editingId}`,updateFormData,
-                    {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    }
-                );
+                // let res = await axios.put(`http://localhost:8080/update_task/${editingId}`,updateFormData,
+                //     {
+                //         headers: {
+                //             'Authorization': `Bearer ${token}`
+                //         }
+                //     }
+                // );
+                let res = await api.put(`/update_task/${editingId}`, updateFormData)
                 
     
                 const updatedList = state.data.map(task => task._id === editingId ? res.data.data : task);

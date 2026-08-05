@@ -22,17 +22,18 @@ function LogoutButton() {
       const token = localStorage.getItem("token");
 
       if (token) {
-        await fetch(
-          "http://localhost:8080/logout",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type":
-                "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+      //   await fetch(
+      //     "http://localhost:8080/logout",
+      //     {
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type":
+      //           "application/json",
+      //         Authorization: `Bearer ${token}`,
+      //       },
+      //     }
+      //   );
+      await api.post("/logout");
       }
 
       localStorage.removeItem("token");

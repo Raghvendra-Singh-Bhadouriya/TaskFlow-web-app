@@ -9,6 +9,7 @@ import { FaEllipsisV, FaUsers } from "react-icons/fa";
 import { MdOutlineDashboard } from "react-icons/md";
 import { BiTask } from "react-icons/bi";
 import GroupSettings from "../Group/GroupSettings";
+import api from "../services/axios"
 
 const initialState = {
   loading: false,
@@ -52,20 +53,21 @@ const Dashboard = () => {
   const { Open } = useContext(ToggleFormShowContext);
   const { decodedToken } = useContext(AuthContext);
 
-  const token = localStorage.getItem("token")
+  //const token = localStorage.getItem("token")
 
   async function fetchGroups() {
     dispatch({ type: "FETCH_START" });
 
     try {
-      const res = await axios.get(
-        "http://localhost:8080/groups",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      // const res = await axios.get(
+      //   "http://localhost:8080/groups",
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   }
+      // );
+      const res = await api.get(`/groups`)
 
       dispatch({
         type: "FETCH_SUCCESS",
@@ -268,7 +270,8 @@ const Dashboard = () => {
       )}
 
       {/* ERROR */}
-      {state.error && (
+      {state.error &&
+        !noGroup && (
         <div
           className="
             bg-red-50
@@ -373,7 +376,7 @@ const Dashboard = () => {
               gap-6
             "
           >
-            { settingPopUpOpen && <GroupSettings group_id={selectedGroupId} setSettingPopUpOpen={setSettingPopUpOpen} /> }
+            { settingPopUpOpen && <GroupSettings group_id={selectedGroupId} setSettingPopUpOpen={setSettingPopUpOpen} fetchGroups={fetchGroups} /> }
 
             {state.data.map((group) => (
               <div

@@ -8,6 +8,7 @@ import { GroupDetailFetchContext } from "../context/GroupDetailFetchContext";
 import TaskCreateForm from "../forms/TaskCreateForm";
 import AddMemberInGroupForm from "../forms/AddMemberInGroupForm";
 import Task from "../task/Task";
+import api from "../services/axios";
 
 const GroupDetail = () => {
   const {
@@ -26,20 +27,21 @@ const GroupDetail = () => {
 
   const { groupId } = useParams();
 
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
   async function fetchGroupName(id) {
     try {
       setLoading(true);
 
-      const res = await axios.get(
-        `http://localhost:8080/group/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      // const res = await axios.get(
+      //   `http://localhost:8080/group/${id}`,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   }
+      // );
+      const res = await api.get(`/group/${id}`)
 
       setGroupDetail(res?.data?.data);
       //console.log(res?.data?.data)

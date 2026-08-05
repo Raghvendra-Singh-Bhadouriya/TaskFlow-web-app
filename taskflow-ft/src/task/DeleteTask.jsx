@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../services/axios";
 
 const DeleteTask = ({ taskId }) => {
     const [ error, setError ] = useState("")
@@ -8,15 +9,18 @@ const DeleteTask = ({ taskId }) => {
 
     //=========== Task Delete function ==============// 
     async function handleDelete(id){
-        const token = localStorage.getItem("token")
+
+        //const token = localStorage.getItem("token")
+
         try {
-            let res = await axios.delete(`http://localhost:8080/delete-task/${id}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            )
+            // let res = await axios.delete(`http://localhost:8080/delete-task/${id}`,
+            //     {
+            //         headers: {
+            //             Authorization: `Bearer ${token}`
+            //         }
+            //     }
+            // )
+            let res = await api.delete(`/delete-task/${id}`)
 
             confirm("Are you sure do you want to delete task")
             if(res?.response?.success === true){
