@@ -7,7 +7,7 @@ import PublicLayout from "./PublicLayout";
 import AppLayout from "./AapLayout";
 import SignIn from "../pages/SignIn";
 import GroupWorkspace from "../Group/GroupWorkspace";
-import GroupMembers from "../Group/groupMembers";
+import GroupMembers from "../Group/GroupMembers";
 import PrivateRoute from "../components/PrivateRoute";
 import Profile from "../pages/Profile";
 import SingleTask from "../task/SingleTask";
