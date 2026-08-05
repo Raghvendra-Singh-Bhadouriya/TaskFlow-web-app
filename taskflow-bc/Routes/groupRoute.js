@@ -1,4 +1,3 @@
-//import mongoose from "mongoose";
 import express from "express";
 import groupModel from "../Models/groupSchema.js";
 const router = express.Router();
@@ -12,10 +11,6 @@ router.post("/create-group", authentication, async (req, res) => {
 
         console.log("body: ", req.body)
         console.log("groupname: ", groupname)
-
-        // if(!title){
-        //     return res.status(409).json({message: `Title is required`})
-        // }
 
         const sameTitle = await groupModel.findOne({groupname})
         if(sameTitle){
@@ -55,7 +50,7 @@ router.get("/groups",authentication, async (req, res) => {
         const groups = await groupModel.find({"members.userId": userId});
         //console.log("userGroup", groups)
         if(groups.length <= 0){
-            return res.status(404).json({
+            return res.status(200).json({
                 message: `You are not add or create in any group`
             })
         }

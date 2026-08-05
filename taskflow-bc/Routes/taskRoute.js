@@ -46,26 +46,6 @@ router.post("/create_task/:groupId", authMiddleware, async (req, res) => {
     }
 })
 
-
-// router.post("/add_task", authMiddleware, async (req, res) => {
-//     try {
-//         const {title} = req.body;
-
-//         if(!title){
-//             return res.status(400).json({message: `title is required`})
-//         }
-
-//         const newProject = new taskModel(req.body)
-//         newProject.save()
-//         res.status(201).json({
-//             message: `Task added successfully`,
-//             data: newProject
-//         })
-//     } catch (error) {
-//         res.status(500).json({message: `Task not added: ${error.message}`})
-//     }
-// })
-
 // ================= Get Method to Fetched all tasks ================== //
 router.get("/all_task/:groupId", async (req, res) => {
     try {
