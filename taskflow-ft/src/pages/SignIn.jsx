@@ -146,7 +146,11 @@ const SignIn = () => {
           </h1>
 
           <p className="text-gray-500 mt-2">
-            Sign in to continue using TaskFlow
+            Sign in to your TaskFlow account.
+          </p>
+
+          <p className="text-gray-500 mt-2">
+            TaskFlow securely authenticates users using encrypted passwords and JWT authentication.
           </p>
         </div>
 
