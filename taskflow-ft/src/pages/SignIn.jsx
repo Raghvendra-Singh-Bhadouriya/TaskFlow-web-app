@@ -145,13 +145,17 @@ const SignIn = () => {
             Welcome Back
           </h1>
 
-          <p className="text-gray-500 mt-2">
+          {/* <p className="text-gray-500 mt-2">
             Sign in to your TaskFlow account.
+          </p> */}
+
+          <p className="text-gray-500 mt-2 text-sm leading-6">
+            Securely access your workspace, manage projects, and collaborate with your team.
           </p>
 
-          <p className="text-gray-500 mt-2">
+          {/* <p className="text-gray-500 mt-2">
             TaskFlow securely authenticates users using encrypted passwords and JWT authentication.
-          </p>
+          </p> */}
         </div>
 
         {/* Form */}
@@ -269,6 +273,7 @@ const SignIn = () => {
                   <FaEye />
                 )}
               </button>
+
             </div>
           </div>
 
@@ -318,6 +323,10 @@ const SignIn = () => {
               ? "Signing In..."
               : "Sign In"}
           </button>
+
+          <p className="mt-3 text-center text-xs text-gray-500">
+            🔒 Secure login with encrypted passwords and HTTPS.
+          </p>
         </form>
 
         {/* Footer */}
